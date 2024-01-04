@@ -1,8 +1,6 @@
-import { StyleSheet, Image } from 'react-native';
-
-import EditScreenInfo from '../../components/EditScreenInfo';
+import { StyleSheet, FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Text, View } from '../../components/Themed';
-import { FlatList, Dimensions } from 'react-native';
 import RecipeItem from '../../components/RecipeItem';
 
 const recipes = [
@@ -14,13 +12,26 @@ const recipes = [
   { title: 'Recipe Name', image: require('../../assets/images/example-food.png'), time: 15 },
 ];
 
-export default function TabOneScreen() {
+export default function RecipeListScreen() {
+  const navigation = useNavigation();
+
+  const handleRecipePress = (recipe: { title: string; image: any; time: number }) => {
+    navigation.navigate('RecipeDetailsScreen', { recipe } as { recipe: { title: string; image: any; time: number } });
+  };
+
   return (
     <View style={styles.container}>
       <FlatList
         data={recipes}
         numColumns={1}
-        renderItem={({ item }) => <RecipeItem title = {item.title} image={item.image} time={item.time}/>}
+        renderItem={({ item }) => (
+          <RecipeItem
+            title = {item.title}
+            image={item.image}
+            time={item.time}
+            onPress={() => handleRecipePress(item)}
+          />
+        )}
         keyExtractor={(item, index) => index.toString()}
         contentContainerStyle={[styles.flatListContentContainer, styles.shadowProp]}
       />
@@ -43,3 +54,4 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
   }
 });
+
