@@ -1,40 +1,42 @@
-import { StyleSheet } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, FlatList } from 'react-native';
+import RecipeItem from '../../components/RecipeItem';
 
-import EditScreenInfo from '../../components/EditScreenInfo';
-import { Text, View } from '../../components/Themed';
-
-const ingredients = [
-  { title: 'Carrot', },
-  { title: 'Squash', },
-  { title: 'Squash', },
-  { title: 'Squash', },
-  { title: 'Squash', },
-  { title: 'Squash', },
+const recipes = [
+  { title: 'Recipe Name 1' },
+  { title: 'Recipe Name 2' },
+  { title: 'Recipe Name 3' },
+  { title: 'Recipe Name 4' },
+  { title: 'Recipe Name 5' },
+  { title: 'Recipe Name 6' },
 ];
 
-export default function TabTwoScreen() {
+export default function TabOneScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
+      <FlatList
+        data={recipes}
+        numColumns={1}
+        renderItem={({ item }) => <RecipeItem title={item.title} />}
+        keyExtractor={(item, index) => index.toString()}
+        contentContainerStyle={[styles.flatListContentContainer, styles.shadowProp]}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
+    margin: 'auto',
     justifyContent: 'center',
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  flatListContentContainer: {
+    alignItems: 'stretch',
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  shadowProp: {
+    shadowColor: '#171717',
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
   },
 });
