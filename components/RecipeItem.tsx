@@ -1,22 +1,24 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import Svg, { Circle, Path } from 'react-native-svg';
 
-const RecipeItem = ({ title, image, time }) => {
+const RecipeItem = ({ title, image, time, onPress }) => {
   return (
-    <View style={styles.recipeContainer}>
-      <Image source={image} style={styles.recipeImage} />
-      <View style={styles.textContainer}>
-        <Text style={styles.recipeTitle}>{title}</Text>
-        <View style={styles.recipeTimeWrapper}>
-          <Svg width="16" height="16" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <Circle cx="6.5" cy="6.5" r="6" stroke="#646E77"/>
-          <Path d="M6.11768 3.05882V7.26471H9.55885" stroke="#646E77" stroke-linecap="round" stroke-linejoin="round"/>
-          </Svg>
-          <Text style={styles.recipeTime}>{time} mins</Text>
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.recipeContainer}>
+        <Image source={image} style={styles.recipeImage} />
+        <View style={styles.textContainer}>
+          <Text style={styles.recipeTitle}>{title}</Text>
+          <View style={styles.recipeTimeWrapper}>
+            <Svg width="16" height="16" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="6.5" cy="6.5" r="6" stroke="#646E77"/>
+            <Path d="M6.11768 3.05882V7.26471H9.55885" stroke="#646E77" stroke-linecap="round" stroke-linejoin="round"/>
+            </Svg>
+            <Text style={styles.recipeTime}>{time} mins</Text>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
