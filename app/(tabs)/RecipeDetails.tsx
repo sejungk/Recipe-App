@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 25,
-    fontWeight: 'bold',
+    fontWeight: '500',
     marginVertical: 10,
     textAlign: 'center',
   },
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   sectionTitle: {
-    fontWeight: semibold,
+    fontWeight: '600',
     fontSize: 18,
     marginTop: 20,
     marginBottom: 10,
